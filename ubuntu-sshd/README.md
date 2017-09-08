@@ -14,7 +14,7 @@ docker run -d -P --name ubuntu-sshd ubuntu-sshd
 
 To list the port mapping run
 ```
-docker run ubuntu-sshd 22
+docker port ubuntu-sshd 22
 ```
 
 It will output a line like this
