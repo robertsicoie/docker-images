@@ -26,3 +26,5 @@ Now you can ssh into the container from the host
 ```
 ssh -p 32772 root@localhost
 ```
+
+To enable public key authentication just copy your public key into the /root/.ssh/authorized_keys file.

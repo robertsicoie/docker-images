@@ -6,9 +6,16 @@ RUN apt-get update \
 
 RUN mkdir /var/run/sshd
 
+RUN mkdir /root/.ssh
+RUN touch /root/.ssh/authorized_keys
+RUN chmod 0600 /root/.ssh/*
+
 RUN echo 'root:root' | chpasswd
 
 RUN sed -i 's/#\?PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+RUN sed -i 's|#AuthorizedKeysFile .ssh/authorized_keys|AuthorizedKeysFile .ssh/authorized_keys|' /etc/ssh/sshd_config
+
 
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
